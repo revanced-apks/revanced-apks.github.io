@@ -1,0 +1,43 @@
+name: Deploy GH pages
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: stable
+          targets: x86_64-unknown-linux-gnu,wasm32-unknown-unknown
+      - uses: Swatinem/rust-cache@v2
+        with:
+          cache-all-crates: "true"
+          save-if: ${{ github.ref == 'refs/heads/main' }}
+      - uses: cargo-bins/cargo-binstall@main
+      - name: Install CLI
+        run: cargo binstall dioxus-cli -y
+      - name: Build
+        run: dx build --release --features web
+      - name: Build Static HTML
+        run: cargo run --release --features prebuild
+      - name: Create 404.html
+        run: cp dist/index.html dist/404.html
+      - name: Rebuild with search index
+        run: dx build --release --features web && cp dist/404.html dist/index.html
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4.2.3
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist # The folder the action should deploy.
+          target-folder: .
+          clean: true
