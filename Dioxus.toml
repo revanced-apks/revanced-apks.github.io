@@ -29,6 +29,8 @@ watch_path = ["src", "assets"]
 # include `assets` in web platform
 [web.resource]
 
+index_on_404 = true
+
 # CSS style file
 
 style = ["tailwind.css"]
