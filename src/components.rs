@@ -63,7 +63,7 @@ pub fn ReleaseCard() -> Element {
         Some(Ok(release)) => {
             let assets = &release.assets.iter().rev().collect::<Vec<_>>();
             rsx! {
-                div { class: "shadow-lg shadow-blue-500 rounded-lg overflow-hidden",
+                div { class: "shadow-lg shadow-blue-500 rounded-lg overflow-scroll",
                     div { class: "px-6 py-4",
                         h1 { class: "font-bold text-xl mb-2", "{release.name}" }
                         // p { class: "text-gray text-base", "{release.body}" },

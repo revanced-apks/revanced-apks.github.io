@@ -18,9 +18,9 @@ fn main() {
 
 #[derive(Routable, PartialEq, Clone, Debug)]
 enum Route {
-    #[layout(Meta)]
-        #[route("/")]
-        Home {},
+    #[layout(BasicLayout)]
+    #[route("/")]
+    Home {},
     #[end_layout]
     //  if the current location doesn't match any of the above routes, render the NotFound component
     #[route("/:..segments")]
@@ -32,9 +32,14 @@ fn NotFound(segments: Vec<String>) -> Element {
     let route = segments.join("/");
     rsx! {
         HeadTags {}
-        div { class: "flex flex-col items-center justify-center",
+        div { class: "container flex flex-col items-center justify-center mx-auto p-2 text-gray-300 gap-4",
             h1 { class: "text-4xl font-bold text-red-500", "404" }
             p { class: "text-sm sm:text-base", "Page {route} not found" }
+            Link {
+                to: Route::Home {},
+                class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded",
+                "Go Home"
+            }
         }
     }
 }
@@ -60,12 +65,12 @@ fn HeadTags() -> Element {
 }
 
 #[component]
-fn Meta() -> Element {
+fn BasicLayout() -> Element {
     rsx! {
         HeadTags {}
         div {
             id: "content",
-            class: "container mx-auto px-2 text-gray-300 h-screen overflow-scroll",
+            class: "container mx-auto px-2 text-gray-300 h-svh overflow-scroll",
             Outlet::<Route> {}
         }
         NavBar {}
