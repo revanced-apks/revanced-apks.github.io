@@ -6,7 +6,8 @@ mod utils;
 use dioxus::prelude::*;
 use log::LevelFilter;
 
-use crate::components::{Header, NavBar, ReleaseCard};
+use crate::components::{Header, NavBar};
+use crate::components::release::ReleaseCard;
 
 fn main() {
     // Init debug
