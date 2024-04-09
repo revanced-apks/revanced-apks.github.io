@@ -20,6 +20,7 @@ jobs:
           toolchain: stable
           targets: x86_64-unknown-linux-gnu,wasm32-unknown-unknown
       - uses: Swatinem/rust-cache@v2
+        if: always()
         with:
           cache-all-crates: "true"
           save-if: ${{ github.ref == 'refs/heads/main' }}
