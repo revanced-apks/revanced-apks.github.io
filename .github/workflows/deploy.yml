@@ -30,7 +30,7 @@ jobs:
       - name: Build
         run: dx build --release
       - name: Build Static HTML
-        run: cargo run --release --features prebuild
+        run: cargo run --release
       - name: Create 404.html
         run: cp dist/index.html dist/404.html
       - name: Rebuild with search index
