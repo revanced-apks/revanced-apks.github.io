@@ -27,13 +27,13 @@ jobs:
       - name: Install CLI
         run: cargo binstall dioxus-cli -y
       - name: Build
-        run: dx build --release --features web
+        run: dx build --release
       - name: Build Static HTML
         run: cargo run --release --features prebuild
       - name: Create 404.html
         run: cp dist/index.html dist/404.html
       - name: Rebuild with search index
-        run: dx build --release --features web && cp dist/404.html dist/index.html
+        run: dx build --release && cp dist/404.html dist/index.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
