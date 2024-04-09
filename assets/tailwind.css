@@ -653,6 +653,30 @@ video {
   height: 100svh;
 }
 
+.h-\[calc\(100vh-74px\)\] {
+  height: calc(100vh - 74px);
+}
+
+.h-\[calc\(100vh-1rem\)\] {
+  height: calc(100vh - 1rem);
+}
+
+.h-\[calc\(100vh-2rem\)\] {
+  height: calc(100vh - 2rem);
+}
+
+.h-\[calc\(100vh-5rem\)\] {
+  height: calc(100vh - 5rem);
+}
+
+.h-\[calc\(100vh-4rem\)\] {
+  height: calc(100vh - 4rem);
+}
+
+.h-\[calc\(100vh-\)\] {
+  height: calc(100vh - );
+}
+
 .w-5 {
   width: 1.25rem;
 }
@@ -705,12 +729,20 @@ video {
   gap: 1rem;
 }
 
+.overflow-auto {
+  overflow: auto;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
 
 .overflow-scroll {
   overflow: scroll;
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
 }
 
 .rounded {

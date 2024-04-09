@@ -70,7 +70,7 @@ fn BasicLayout() -> Element {
         HeadTags {}
         div {
             id: "content",
-            class: "container mx-auto px-2 text-gray-300 h-svh overflow-scroll",
+            class: "container mx-auto px-2 text-gray-300 h-[calc(100vh-74px)] overflow-auto scroll-smooth",
             Outlet::<Route> {}
         }
         NavBar {}

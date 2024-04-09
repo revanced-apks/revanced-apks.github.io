@@ -31,7 +31,7 @@ fn NavItem(props: NavItemProps) -> Element {
             a {
                 class: "flex items-end justify-center text-center mx-auto px-4 pt-2 w-full text-gray-400 group-hover:text-indigo-500",
                 href: props.href,
-                span { class: "flex flex-col items-center justify-center px-1 pt-1 pb-1",
+                span { class: "flex flex-col items-center justify-center px-1 ",
                     {props.Icon},
                     span { class: "block text-xs pb-2", "{props.text}" }
                     span { class: "block w-5 mx-auto h-1 group-hover:bg-indigo-500 rounded-full" }
@@ -63,7 +63,7 @@ pub fn ReleaseCard() -> Element {
         Some(Ok(release)) => {
             let assets = &release.assets.iter().rev().collect::<Vec<_>>();
             rsx! {
-                div { class: "shadow-lg shadow-blue-500 rounded-lg overflow-scroll",
+                div { class: "shadow-lg shadow-blue-500 rounded-lg overflow-auto",
                     div { class: "px-6 py-4",
                         h1 { class: "font-bold text-xl mb-2", "{release.name}" }
                         // p { class: "text-gray text-base", "{release.body}" },
