@@ -1,0 +1,26 @@
+body {
+    background-color: #111216;
+}
+
+#main {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+#header {
+    max-width: 1200px;
+}
+
+/* Custom dark scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #1e1f26;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #111216;
+}
