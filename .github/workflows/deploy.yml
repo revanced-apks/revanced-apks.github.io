@@ -20,7 +20,6 @@ jobs:
           toolchain: stable
           targets: x86_64-unknown-linux-gnu,wasm32-unknown-unknown
       - uses: Swatinem/rust-cache@v2
-        if: always()
         with:
           cache-all-crates: "true"
           save-if: ${{ github.ref == 'refs/heads/main' }}
@@ -29,12 +28,8 @@ jobs:
         run: cargo binstall dioxus-cli -y
       - name: Build
         run: dx build --release
-      - name: Build Static HTML
-        run: cargo run --release
       - name: Create 404.html
         run: cp dist/index.html dist/404.html
-      - name: Rebuild with search index
-        run: dx build --release && cp dist/404.html dist/index.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4.2.3
         with:
