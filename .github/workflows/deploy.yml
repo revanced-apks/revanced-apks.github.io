@@ -12,6 +12,10 @@ concurrency:
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: read
+      pages: write
+      deployments: write
     steps:
       - uses: actions/checkout@v4
       - name: Install Rust
@@ -26,6 +30,8 @@ jobs:
       - uses: cargo-bins/cargo-binstall@main
       - name: Install CLI
         run: cargo binstall dioxus-cli -y
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: dx build --release
       - name: Create 404.html
