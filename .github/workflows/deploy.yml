@@ -16,6 +16,7 @@ jobs:
       contents: read
       pages: write
       deployments: write
+      
     steps:
       - uses: actions/checkout@v4
       - name: Install Rust
@@ -36,10 +37,13 @@ jobs:
         run: dx build --release
       - name: Create 404.html
         run: cp dist/index.html dist/404.html
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4.2.3
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: dist # The folder the action should deploy.
-          target-folder: .
-          clean: true
+          # Upload entire repository
+          path: 'dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
